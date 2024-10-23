@@ -1,0 +1,49 @@
+.centered-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
+    /* Cambia según tus necesidades */
+    height: 10%;
+    /* Mantiene la proporción */
+}
+
+.navbar {
+    background: linear-gradient(#ff7f50, #007bff, white);
+}
+
+.navbar a {
+    color: white !important;
+}
+
+/* Estilos para el botón de iniciar sesión */
+.btn-outline-light {
+    color: rgb(241, 236, 236);
+    /* Color del texto por defecto */
+    border: 1px solid rgb(252, 247, 247);
+    align-self: end;
+    margin-left: auto;
+}
+
+.btn.btn-outline-light:hover {
+    background-color: white;
+    /* Fondo blanco en hover */
+    color: rgb(12, 12, 12) !important;
+    /* Cambia el color del texto a negro en hover */
+}
+
+footer {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    /* Asegura que esté encima de otros elementos */
+    background-color: #007bff;
+    color: white;
+}
+
+.social-icons a {
+    color: white;
+    margin:10px;
+    font-size: 1.5rem;
+}

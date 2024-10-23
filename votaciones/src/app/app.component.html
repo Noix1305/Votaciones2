@@ -1,1 +1,81 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <img src="assets/imgs/pachuca.png" alt="Logo Pachuca" class="centered-image">
+        <a class="navbar-brand" href="#"><strong>Club Deportivo Pachuca</strong></a>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/home">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/votar">Votaciones</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/resultados">Resultados</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/acerca">Acerca del Club</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/contacto">Contacto</a>
+                </li>
+            </ul>
+            <button type="button" class="btn btn-outline-light my-2 my-sm-0 b" data-bs-toggle="modal"
+                data-bs-target="#loginModal">
+                Iniciar Sesión
+            </button>
+
+            <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="loginModalLabel">Iniciar Sesión</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Aquí puedes poner tu formulario de inicio de sesión -->
+                            <form>
+                                <div class="mb-3">
+                                    <label for="rut" class="form-label">RUT</label>
+                                    <input type="text" class="form-control" id="rut" placeholder="Ingresa tu RUT">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Contraseña</label>
+                                    <input type="password" class="form-control" id="password"
+                                        placeholder="Ingresa tu contraseña">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary button2"
+                                data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary button2">Iniciar Sesión</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
 <router-outlet></router-outlet>
+
+<footer class="text-center">
+    <div class="social-icons">
+        <a href="https://www.duoc.cl/" target="_blank"><img
+                src="https://seeklogo.com/images/D/duoc-uc-logo-F1437952BE-seeklogo.com.png" alt="Logo Duoc UC"
+                style="width: 50px; height: auto; margin: 0; border-radius: 50%;"></a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>Contáctanos: info&#64;clubdeportivo.com</p>
+    <p>&copy; 2024 Club Deportivo Pachuca. Todos los derechos reservados.</p>
+</footer>

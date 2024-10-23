@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
+import { VotacionesComponent } from './components/votaciones/votaciones.component';
+import { VerCandidatoComponent } from './components/ver-candidato/ver-candidato.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent }, // Esta ruta redirige a HomeComponent
+  { path: 'home', component: HomeComponent },
+  { path: 'votaciones', component: VotacionesComponent },
+  { path: 'ver-candidato', component: VerCandidatoComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 

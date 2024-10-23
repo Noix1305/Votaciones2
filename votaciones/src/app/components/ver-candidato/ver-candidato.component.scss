@@ -1,0 +1,99 @@
+.candidato-detalle {
+    margin-top: 2rem;
+
+    h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #2c3e50;
+    }
+
+    .text-muted {
+        font-size: 1.5rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .img-fluid {
+        width: 100%;
+        max-width: 250px;
+        margin-bottom: 1rem;
+        border: 5px solid #ecf0f1;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .info {
+        h3 {
+            font-size: 2rem;
+            color: #0a0a0a;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p,
+        li {
+            font-size: 1.8rem;
+            color: #1b1d1d;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 1.7rem;
+        }
+    }
+
+    .btn-primary {
+        margin-top: 2rem;
+        padding: 0.8rem 1.5rem;
+        font-size: 1.2rem;
+        background-color: #2980b9;
+        border: none;
+        border-radius: 30px;
+        transition: background-color 0.2s ease-in-out;
+
+        &:hover {
+            background-color: #3498db;
+        }
+    }
+}
+
+/* Para centrar todo el contenido de la tarjeta */
+.card {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Centra verticalmente el contenido dentro de la tarjeta */
+    align-items: center;
+    /* Centra horizontalmente el contenido dentro de la tarjeta */
+    text-align: center;
+    /* Alinea el texto al centro */
+    padding: 1.5rem;
+    /* Añade espacio interno alrededor del contenido */
+    background: linear-gradient(#ff7f50, #007bff, white);;
+
+    &:hover {
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.card-img-top {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin: 1.5rem auto;
+    border: 5px solid #ecf0f1;
+    display: block;
+    /* Asegura que la imagen se mantenga como un bloque */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Asegura que los elementos del cuerpo estén centrados */
+    align-items: center;
+    /* Centra los elementos dentro del cuerpo */
+    padding: 1.5rem;
+}

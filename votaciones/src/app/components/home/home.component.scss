@@ -25,75 +25,7 @@ body {
     color: #000000;
 }
 
-.navbar {
-    background: linear-gradient(#ff7f50, #007bff, white);
-}
-
-.navbar a {
-    color: white !important;
-}
-
 .section-title {
     color: #007bff;
     margin-top: 40px;
-}
-
-.social-icons a {
-    color: white;
-    margin: 0 10px;
-    font-size: 1.5rem;
-}
-
-/* Estilos para la imagen */
-.centered-image {
-    display: block;
-    margin: 20px auto;
-    /* Centrar la imagen */
-    width: auto;
-    /* Ajustar el ancho de la imagen (puedes cambiar este valor) */
-    max-width: 400px;
-    /* Limitar el ancho máximo */
-    height: auto;
-    /* Mantener la proporción */
-}
-
-/* Estilos para el botón de iniciar sesión */
-.btn-outline-light {
-    color: rgb(241, 236, 236);
-    /* Color del texto por defecto */
-    border: 1px solid rgb(252, 247, 247);
-    align-self: end;
-    margin-left: auto;
-}
-
-a.btn.btn-outline-light:hover {
-    background-color: white;
-    /* Fondo blanco en hover */
-    color: black !important;
-    /* Cambia el color del texto a negro en hover */
-}
-
-
-
-.centered-image {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100px;
-    /* Cambia según tus necesidades */
-    height: auto;
-    /* Mantiene la proporción */
-}
-
-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-    z-index: 1000;
-    /* Asegura que esté encima de otros elementos */
-    background-color: #007bff;
-    color: white;
-    padding: 20px 0;
 }
