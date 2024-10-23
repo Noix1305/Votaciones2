@@ -1,0 +1,19 @@
+<div class="container">
+    <h1>Resultados de las Votaciones</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Candidato</th>
+          <th>Votos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let resultado of resultados">
+          <td>{{ resultado.candidato }}</td>
+          <td>{{ resultado.votos }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-primary" routerLink="/votaciones">Volver a Votaciones</button>
+  </div>
+  

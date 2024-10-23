@@ -33,13 +33,14 @@
 }
 
 footer {
-    bottom: 0;
+    position: relative; /* Cambia fixed a relative */
+    bottom: 0; /* Esta línea no es necesaria si usas relative */
     left: 0;
     right: 0;
     text-align: center;
-    /* Asegura que esté encima de otros elementos */
     background-color: #007bff;
     color: white;
+    padding: 10px 0; /* Añade un poco de padding para un mejor aspecto */
 }
 
 .social-icons a {
