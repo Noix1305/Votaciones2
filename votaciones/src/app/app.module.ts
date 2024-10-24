@@ -7,21 +7,26 @@ import { VotacionesComponent } from './components/votaciones/votaciones.componen
 import { VerCandidatoComponent } from './components/ver-candidato/ver-candidato.component';
 import { VerResultadosComponent } from './components/ver-resultados/ver-resultados.component';
 import { VotacionesDisponiblesComponent } from './components/votaciones-disponibles/votaciones-disponibles.component'; // Mantén la importación
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    VotacionesDisponiblesComponent
-    
+    HomeComponent
+
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     VotacionesComponent, // Importa aquí como componente stand-alone
     VerCandidatoComponent,
-    VerResultadosComponent
-     // Importa aquí como componente stand-alone
+    VerResultadosComponent,
+    VotacionesDisponiblesComponent,
+    FormsModule,
+    // Importa aquí como componente stand-alone
   ],
   providers: [],
   bootstrap: [AppComponent]

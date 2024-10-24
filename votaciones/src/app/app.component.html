@@ -1,68 +1,86 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <img src="assets/imgs/pachuca.png" alt="Logo Pachuca" class="centered-image">
-        <a class="navbar-brand" href="#"><strong>Club Deportivo Pachuca</strong></a>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/home">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/votar">Votaciones</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/resultados">Resultados</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/acerca">Acerca del Club</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/contacto">Contacto</a>
-                </li>
-            </ul>
-            <button type="button" class="btn btn-outline-light my-2 my-sm-0 b" data-bs-toggle="modal"
-                data-bs-target="#loginModal">
-                Iniciar Sesión
-            </button>
+        <div class="row w-100 align-items-center">
+            <!-- Primera Columna: Logo y Nombre del Club -->
+            <div class="col-4 d-flex align-items-center">
+                <img src="assets/imgs/pachuca.png" alt="Logo Pachuca" class="centered-image">
+                <a class="navbar-brand ms-2" href="#"><strong>Club Deportivo Pachuca</strong></a>
+            </div>
 
-            <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="loginModalLabel">Iniciar Sesión</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Aquí puedes poner tu formulario de inicio de sesión -->
-                            <form>
-                                <div class="mb-3">
-                                    <label for="rut" class="form-label">RUT</label>
-                                    <input type="text" class="form-control" id="rut" placeholder="Ingresa tu RUT">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="password" class="form-label">Contraseña</label>
-                                    <input type="password" class="form-control" id="password"
-                                        placeholder="Ingresa tu contraseña">
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary button2"
-                                data-bs-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary button2">Iniciar Sesión</button>
-                        </div>
+            <!-- Segunda Columna: Enlaces de Navegación -->
+            <div class="col-4">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/home">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/votar">Votaciones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/resultados">Resultados</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/acerca">Acerca del Club</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/contacto">Contacto</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Tercera Columna: Botón de Inicio de Sesión -->
+            <div class="col-4 d-flex justify-content-end align-items-center">
+                <span *ngIf="usuario" class="me-2">Bienvenido {{ usuario.pnombre }}</span>
+                <button type="button" class="btn btn-outline-light my-2 my-sm-0" (click)="toggleLogin()">
+                    {{ usuario ? 'Cerrar Sesión' : 'Iniciar Sesión' }}
+                </button>
+            </div>
+        </div>
+
+        <!-- Modal de Inicio de Sesión -->
+        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="loginModalLabel">Iniciar Sesión</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="correo" class="form-label">RUT</label>
+                                <input type="text" class="form-control" id="correo" placeholder="Ingresa tu Correo"
+                                    [(ngModel)]="correo" name="correo" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="password"
+                                    placeholder="Ingresa tu contraseña" [(ngModel)]="password" name="password" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" (click)="handleLoginSubmit()">Iniciar
+                            Sesión</button>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </nav>
+
+
+
+
 
 <router-outlet></router-outlet>
 

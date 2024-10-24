@@ -10,5 +10,20 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./votaciones-disponibles.component.scss']
 })
 export class VotacionesDisponiblesComponent {
+  votacionInfo: string = '';
 
+  abrirModal(info: string) {
+    this.votacionInfo = info;
+    const modal = document.getElementById('modalVotacion');
+    if (modal) {
+      modal.style.display = 'block';
+    }
+  }
+
+  cerrarModal() {
+    const modal = document.getElementById('modalVotacion');
+    if (modal) {
+      modal.style.display = 'none';
+    }
+  }
 }
