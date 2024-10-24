@@ -67,7 +67,8 @@ export class AppComponent {
     if (this.usuario) {
       // Cerrar sesión
       this.usuario = null;
-      localStorage.removeItem('userInfo'); // Elimina la información del usuario de localStorage
+      localStorage.clear();
+      sessionStorage.clear();
       this.router.navigate(['home']); // Redirige a la página de login o donde desees
     } else {
       // Aquí puedes abrir el modal de inicio de sesión
