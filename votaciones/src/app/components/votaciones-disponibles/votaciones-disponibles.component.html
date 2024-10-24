@@ -2,68 +2,20 @@
     <h1 class="text-center my-5">Votaciones Disponibles</h1>
 
     <div class="row">
-        <!-- Tarjeta de votación 1 -->
-        <div class="col-md-4 mb-4">
+        <div *ngFor="let votacion of votacionesActivas" class="col-md-4 mb-4">
             <div class="card h-100">
-                <img src="assets/imgs/presidente.png" class="card-img-top" alt="Imagen de la elección de Presidente">
+                <img [src]="votacion.foto_portada" class="card-img-top" alt="Imagen de {{votacion.nombre}}">
                 <div class="card-body text-center">
-                    <h5 class="card-title">Elección de Presidente</h5>
-                    <p class="card-text">Fecha de inicio: 23/10/2024</p>
-                    <p class="card-text">Fecha de fin: 30/10/2024</p>
+                    <h5 class="card-title">{{votacion.nombre}}</h5>
+                    <p class="card-text">Fecha de inicio: {{votacion.fecha_inicio | date: 'dd/MM/yyyy'}}</p>
+                    <p class="card-text">Fecha de fin: {{votacion.fecha_fin | date: 'dd/MM/yyyy'}}</p>
                     <div class="row justify-content-between">
                         <div class="col-auto">
-                            <button class="btn btn-primary"
-                                (click)="abrirModal('Elección de Presidente, Comité, Presupuesto: Detalles sobre las elecciones, fechas, candidatos, etc.')">Ver
+                            <button class="btn btn-primary" (click)="abrirModal(votacion.descripcion)">Ver
                                 Detalles</button>
                         </div>
                         <div class="col-auto">
-                            <button class="btn btn-primary" routerLink='/votaciones'>Ir a Votar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tarjeta de votación 2 -->
-        <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <img src="assets/imgs/comite.png" class="card-img-top" alt="Imagen de la elección del Comité">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Elección del Comité</h5>
-                    <p class="card-text">Fecha de inicio: 15/11/2024</p>
-                    <p class="card-text">Fecha de fin: 22/11/2024</p>
-                    <div class="row justify-content-between">
-                        <div class="col-auto">
-                            <button class="btn btn-primary"
-                                (click)="abrirModal('Elección de Presidente, Comité, Presupuesto: Detalles sobre las elecciones, fechas, candidatos, etc.')">Ver
-                                Detalles</button>
-                        </div>
-                        <div class="col-auto">
-                            <button class="btn btn-primary" routerLink='/votaciones'>Ir a Votar</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <!-- Tarjeta de votación 3 -->
-        <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <img src="assets/imgs/presupuesto.png" class="card-img-top"
-                    alt="Imagen de la aprobación del Presupuesto">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Aprobación de Presupuesto</h5>
-                    <p class="card-text">Fecha de inicio: 01/12/2024</p>
-                    <p class="card-text">Fecha de fin: 05/12/2024</p>
-                    <div class="row justify-content-between">
-                        <div class="col-auto">
-                            <button class="btn btn-primary"
-                                (click)="abrirModal('Elección de Presidente, Comité, Presupuesto: Detalles sobre las elecciones, fechas, candidatos, etc.')">Ver
-                                Detalles</button>
-                        </div>
-                        <div class="col-auto">
-                            <button class="btn btn-primary" routerLink='/votaciones'>Ir a Votar</button>
+                            <button class="btn btn-primary" (click)="irAVotar(votacion)">Ir a Votar</button>
                         </div>
                     </div>
                 </div>
@@ -81,7 +33,6 @@
                 <button type="button" class="btn-close" (click)="cerrarModal()" aria-label="Cerrar">
                     <span aria-hidden="true">&times;</span>
                 </button>
-
             </div>
             <div class="modal-body">
                 <p>{{votacionInfo}}</p>

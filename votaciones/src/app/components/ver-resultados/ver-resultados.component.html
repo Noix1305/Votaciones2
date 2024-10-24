@@ -1,19 +1,34 @@
 <div class="container">
-    <h1>Resultados de las Votaciones</h1>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Candidato</th>
-          <th>Votos</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let resultado of resultados">
-          <td>{{ resultado.candidato }}</td>
-          <td>{{ resultado.votos }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <button class="btn btn-primary" routerLink="/votaciones">Volver a Votaciones</button>
+  <h1>Lista de Votaciones</h1>
+  <ul class="list-group">
+    <li *ngFor="let votacion of votaciones" class="list-group-item">
+      {{ votacion.nombre }}
+      <button class="btn btn-primary float-right" (click)="verResultados(votacion)">Ver Resultados</button>
+    </li>
+  </ul>
+
+  <div *ngIf="seleccionada" class="mt-4">
+      <h2>{{ seleccionada.nombre }}</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Candidato</th>
+            <th>Votos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let resultado of seleccionada.resultados">
+            <td>{{ resultado.candidato }}</td>
+            <td>{{ resultado.votos }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Opción para gráficos en vivo si la votación está activa -->
+      <div *ngIf="seleccionada.activa">
+          <app-grafico-en-vivo [resultados]="seleccionada.resultados"></app-grafico-en-vivo>
+      </div>
+
+      <button class="btn btn-secondary" (click)="volver()">Volver a la Lista</button>
   </div>
-  
+</div>

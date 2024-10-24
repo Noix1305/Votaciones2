@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiConfigService } from '../apiConfig/api-config.service';
 import { HttpParams, HttpResponse } from '@angular/common/http';
-import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { Usuario } from 'src/app/models/usuario';
 
 
@@ -11,12 +11,34 @@ import { Usuario } from 'src/app/models/usuario';
 })
 export class UsuarioService {
   path = 'usuarios';
-  private usuarioSubject = new BehaviorSubject<Usuario | null>(null);
-  public usuario$ = this.usuarioSubject.asObservable();
 
   constructor(private _apiConfig: ApiConfigService) {
     this.cargarUsuario();
   }
+
+  getUrlFotoUsuario(id_usuario: number): Observable<string> {
+    const params = new HttpParams().set('id_usuario', `eq.${id_usuario}`);
+
+    return this._apiConfig.get<{ foto_portada: string }[]>(this.path, params).pipe( // Cambiar el tipo a un array
+      map(response => {
+        console.log('Respuesta completa:', response); // Imprime la respuesta completa
+
+        // Comprueba si el cuerpo de la respuesta existe y tiene al menos un elemento
+        if (response.body && response.body.length > 0 && response.body[0].foto_portada) {
+          console.log('Foto portada: ' + response.body[0].foto_portada);
+          return response.body[0].foto_portada; // Retorna la URL de la foto
+        } else {
+          console.warn(`No se encontró la foto de portada para el usuario: ${id_usuario}`);
+          return 'ruta/a/foto/por/defecto.jpg'; // Usa una foto por defecto
+        }
+      }),
+      catchError((error) => {
+        console.error('Error al obtener la foto del usuario:', error);
+        return throwError(() => new Error('Error al obtener la foto del usuario.'));
+      })
+    );
+  }
+
 
   getUsuarioPorCorreo(correo: string): Observable<HttpResponse<Usuario>> {
     const params = new HttpParams().set('email', `eq.${correo}`);
@@ -27,6 +49,28 @@ export class UsuarioService {
       })
     );
   }
+
+  obtenerUsuarioPorId(id_usuario: number): Observable<Usuario | null> {
+    const params = new HttpParams().set('id_usuario', `eq.${id_usuario}`);
+
+    return this._apiConfig.get<Usuario[]>(this.path, params).pipe(
+        map(response => {
+            // Verifica si el cuerpo de la respuesta existe y no es nulo
+            if (response.body && response.body.length > 0) {
+                return response.body[0]; // Devuelve el primer usuario si existe
+            }
+            console.warn(`No se encontró el usuario con id_usuario: ${id_usuario}`);
+            return null; // Retorna null si no hay usuario
+        }),
+        catchError((error) => {
+            console.error('Error al obtener el usuario:', error);
+            return throwError(() => new Error('Error al obtener el usuario.'));
+        })
+    );
+}
+
+
+
 
   obtenerUsuarios(): Observable<Usuario[]> {
     const params = new HttpParams().set('select', '*');
@@ -49,7 +93,6 @@ export class UsuarioService {
 
     if (value) {
       const usuario = JSON.parse(value) as Usuario;
-      this.usuarioSubject.next(usuario); // Emite el nuevo usuario
     }
   }
 
