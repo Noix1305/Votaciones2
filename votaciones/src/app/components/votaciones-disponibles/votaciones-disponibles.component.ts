@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Votacion } from 'src/app/models/votacion';
+import { Votos } from 'src/app/models/voto';
 import { VotacionService } from 'src/app/services/votacionService/votacion.service';
 
 @Component({
@@ -15,6 +16,7 @@ export class VotacionesDisponiblesComponent implements OnInit {
   votacionInfo: string = '';
 
   votacionesActivas: Votacion[] = []
+  votos:Votos[] = [];
 
   constructor(
     private _votacionService: VotacionService,
@@ -22,7 +24,29 @@ export class VotacionesDisponiblesComponent implements OnInit {
 
   ngOnInit() {
     this.cargarVotaciones();
+    this.obtenerVotos();
   }
+
+  generarYInsertarVotos(){
+    this._votacionService.generarYInsertarVotos();
+    
+  }
+
+  obtenerVotos() {
+    this._votacionService.obtenerVotos().subscribe(
+        (data) => {
+            if (data) {
+                this.votos = data; // Guarda los datos obtenidos
+            } else {
+                this.votos = []; // Maneja el caso donde data es null
+            }
+            console.log('Votos obtenidos:', this.votos);
+        },
+        (error) => {
+            console.error('Error al obtener votos:', error);
+        }
+    );
+}
 
   cargarVotaciones() {
     console.log('Cargando Votaciones')

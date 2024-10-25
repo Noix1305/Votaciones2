@@ -9,13 +9,14 @@ import { VotacionesDisponiblesComponent } from './components/votaciones-disponib
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { VotacionesComponent } from './components/votaciones/votaciones.component';
+import { NgChartsModule } from 'ng2-charts';
+import { GraficoComponent } from './components/grafico/grafico.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent
-
-
+    
   ],
   imports: [
     BrowserModule,
@@ -25,7 +26,9 @@ import { VotacionesComponent } from './components/votaciones/votaciones.componen
     VerCandidatoComponent,
     VerResultadosComponent,
     VotacionesDisponiblesComponent,
+    GraficoComponent,
     FormsModule,
+    NgChartsModule
     // Importa aquí como componente stand-alone
   ],
   providers: [],

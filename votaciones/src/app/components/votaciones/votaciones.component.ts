@@ -49,8 +49,6 @@ export class VotacionesComponent implements OnInit {
         console.error('Error al cargar candidatos con fotos:', error);
       }
     });
-
-
   }
 
   guardarYVerCandidato(candidato: Candidato): void {

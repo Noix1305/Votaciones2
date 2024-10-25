@@ -1,11 +1,12 @@
 import { HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, forkJoin, map, Observable, switchMap, throwError } from 'rxjs';
+import { forkJoin, Observable, throwError } from 'rxjs';
 import { Candidato } from 'src/app/models/candidato';
 import { ApiConfigService } from '../apiConfig/api-config.service';
 import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from '../usuarioService/usuario.service';
 import { UsuarioCandidato } from 'src/app/models/ususarioCandidato';
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

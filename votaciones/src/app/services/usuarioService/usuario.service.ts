@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ApiConfigService } from '../apiConfig/api-config.service';
 import { HttpParams, HttpResponse } from '@angular/common/http';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { Usuario } from 'src/app/models/usuario';
 
 

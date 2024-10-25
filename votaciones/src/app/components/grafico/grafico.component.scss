@@ -1,0 +1,42 @@
+// grafico.component.scss
+
+// Estilos generales para el canvas
+canvas {
+    width: 100% !important; // Asegura que el canvas ocupe todo el ancho disponible
+    max-width: 600px; // Máximo ancho que deseas para el gráfico
+    height: 400px !important; // Establece la altura del gráfico
+    border: 1px solid #ccc; // Añade un borde gris claro alrededor del gráfico
+    border-radius: 10px; // Bordes redondeados
+    background-color: #f9f9f9; // Color de fondo
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); // Sombra suave
+}
+
+// grafico.component.scss
+
+.legend {
+    display: flex;
+    justify-content: center; // Centra la leyenda
+    margin-top: 10px; // Espacio encima de la leyenda
+    font-size: 14px; // Tamaño de fuente
+    color: #333; // Color del texto de la leyenda
+}
+
+// Puedes ajustar estilos específicos para elementos de la leyenda
+.legend-item {
+    margin: 0 10px; // Espaciado entre elementos de la leyenda
+    cursor: pointer; // Cambia el cursor al pasar por encima
+}
+
+// grafico.component.scss
+
+.datalabels {
+    font-size: 12px; // Tamaño de la fuente de las etiquetas de datos
+    color: #fff; // Color del texto
+    background-color: rgba(0, 0, 0, 0.6); // Color de fondo
+    padding: 5px; // Espaciado alrededor del texto
+    border-radius: 5px; // Bordes redondeados
+}
+
+
+
+// Puedes agregar estilos adicionales según sea necesario

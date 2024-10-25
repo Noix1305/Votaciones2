@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario';
-import { firstValueFrom } from 'rxjs';
 import { UsuarioService } from '../usuarioService/usuario.service';
 import { AuthResponse } from '@supabase/supabase-js';
 import { keysUserBd } from 'src/environments/environment';
 import { SupabaseService } from '../supabaseService/supabase.service';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

@@ -8,27 +8,14 @@
   </ul>
 
   <div *ngIf="seleccionada" class="mt-4">
-      <h2>{{ seleccionada.nombre }}</h2>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Candidato</th>
-            <th>Votos</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let resultado of seleccionada.resultados">
-            <td>{{ resultado.candidato }}</td>
-            <td>{{ resultado.votos }}</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <!-- Opción para gráficos en vivo si la votación está activa -->
-      <div *ngIf="seleccionada.activa">
-          <app-grafico-en-vivo [resultados]="seleccionada.resultados"></app-grafico-en-vivo>
-      </div>
-
-      <button class="btn btn-secondary" (click)="volver()">Volver a la Lista</button>
+    <h2>{{ seleccionada.nombre }}</h2>
+    <table class="table table-striped">
+      <h2>Resultados de la Votación</h2>
+          <canvas id="myChart" width="400" height="400"></canvas>
+      <tbody>
+        
+      </tbody>
+    </table>
+    <button class="btn btn-secondary" routerLink="/votaciones-disponibles">Volver a la Lista</button>
   </div>
 </div>
