@@ -27,8 +27,8 @@ export class VotacionesDisponiblesComponent implements OnInit {
     this.obtenerVotos();
   }
 
-  generarYInsertarVotos(){
-    this._votacionService.generarYInsertarVotos();
+  generarEInsertarVotos(){
+    this._votacionService.generarEInsertarVotos();
     
   }
 

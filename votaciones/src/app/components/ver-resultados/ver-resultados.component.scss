@@ -1,18 +1,72 @@
 .table {
-    margin-top: 20px;
-  }
-  
-  .btn {
-    margin-top: 20px;
-  }
+  margin-top: 20px;
+}
 
-  // grafico.component.scss
+.btn {
+  background-color: #007bff;
+  /* Color del botón */
+  color: white;
+  /* Color del texto */
+  border: none;
+  /* Sin bordes */
+  border-radius: 5px;
+  /* Bordes redondeados */
+  padding: 8px 15px;
+  /* Padding interno del botón */
+  transition: background-color 0.3s;
+  /* Transición suave para hover */
+}
+
+.btn:hover {
+  background-color: #0056b3;
+  /* Color del botón al pasar el mouse */
+}
+
+.list-group {
+  max-width: 600px;
+  /* Limitar el ancho de la lista */
+  margin: 20px auto;
+  /* Centrar la lista */
+  padding: 0;
+  /* Sin padding por defecto */
+  border-radius: 8px;
+  /* Bordes redondeados */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  /* Sombra sutil */
+}
+
+.list-group-item {
+  display: flex;
+  /* Usar flexbox para alinear contenido */
+  justify-content: space-between;
+  /* Espaciado entre el nombre y el botón */
+  align-items: center;
+  /* Alinear verticalmente */
+  padding: 15px;
+  /* Padding interno */
+  border: 1px solid #e0e0e0;
+  /* Bordes del item */
+  margin-bottom: 10px;
+  /* Espaciado entre items */
+  border-radius: 5px;
+  /* Bordes redondeados */
+  background-color: #ffffff;
+  /* Fondo blanco */
+  transition: background-color 0.3s;
+  /* Transición suave para hover */
+}
+
+.list-group-item:hover {
+  background-color: #f8f9fa;
+  /* Color de fondo al pasar el mouse */
+}
 
 // Estilos generales para el canvas
 canvas {
   width: auto !important; // Asegura que el canvas ocupe todo el ancho disponible
   max-width: 1400px; // Máximo ancho que deseas para el gráfico
-  height: auto!important; // Establece la altura del gráfico
+  height: auto !important;
+  max-height: 600px; // Establece la altura del gráfico
   border: 1px solid #ccc; // Añade un borde gris claro alrededor del gráfico
   border-radius: 10px; // Bordes redondeados
   background-color: #f9f9f9; // Color de fondo
@@ -45,7 +99,16 @@ canvas {
   border-radius: 5px; // Bordes redondeados
 }
 
+/* ver-resultados.component.scss */
+.mt-4 {
+  margin-top: 1rem;
+}
 
-
-// Puedes agregar estilos adicionales según sea necesario
-  
+.responsive-chart-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  /* Ajusta el máximo según tus necesidades */
+  margin: auto;
+  padding: 1rem;
+}

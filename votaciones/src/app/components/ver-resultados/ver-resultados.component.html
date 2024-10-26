@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container" style="text-align:center;">
   <h1>Lista de Votaciones</h1>
   <ul class="list-group">
     <li *ngFor="let votacion of votaciones" class="list-group-item">
-      {{ votacion.nombre }}
+      <strong>{{ votacion.nombre }}</strong> [{{votacion.fecha_inicio}} -- {{votacion.fecha_fin}}]
       <button class="btn btn-primary float-right" (click)="verResultados(votacion)">Ver Resultados</button>
     </li>
   </ul>
@@ -11,11 +11,10 @@
     <h2>{{ seleccionada.nombre }}</h2>
     <table class="table table-striped">
       <h2>Resultados de la Votación</h2>
-          <canvas id="myChart" width="400" height="400"></canvas>
-      <tbody>
-        
-      </tbody>
+      <div class="responsive-chart-container">
+        <canvas id="myChart"></canvas>
+      </div>
     </table>
-    <button class="btn btn-secondary" routerLink="/votaciones-disponibles">Volver a la Lista</button>
+    <button class="btn btn-secondary" routerLink="/home">Volver</button>
   </div>
 </div>

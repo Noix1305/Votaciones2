@@ -6,11 +6,9 @@ import { VerCandidatoComponent } from './components/ver-candidato/ver-candidato.
 import { VerResultadosComponent } from './components/ver-resultados/ver-resultados.component';
 import { VotacionesDisponiblesComponent } from './components/votaciones-disponibles/votaciones-disponibles.component';
 import { isUsuarioGuard } from './guards/is-usuario.guard';
-import { GraficoComponent } from './components/grafico/grafico.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'grafico', component: GraficoComponent },
   {
     path: 'votaciones', component: VotacionesComponent,
     canActivate: [isUsuarioGuard]
@@ -20,8 +18,7 @@ const routes: Routes = [
     canActivate: [isUsuarioGuard]
   },
   {
-    path: 'ver-resultados', component: VerResultadosComponent,
-    canActivate: [isUsuarioGuard]
+    path: 'ver-resultados', component: VerResultadosComponent
   },
   {
     path: 'votaciones-disponibles', component: VotacionesDisponiblesComponent,

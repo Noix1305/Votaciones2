@@ -38,8 +38,9 @@ export class CandidatoService {
   obtenerCandidatosConFoto(id_votacion: number): Observable<Candidato[]> {
     return this.obtenerCandidatos(id_votacion).pipe(
       switchMap((candidatos) => {
+        console.log('Candidatos obtenidos:', candidatos); // Verifica los candidatos obtenidos
         this.candidatos = candidatos;
-
+  
         // Crea un array de observables para obtener los datos del usuario
         const observables = this.candidatos.map(candidato =>
           this._usuarioService.obtenerUsuarioPorId(candidato.id_usuario).pipe(
@@ -55,7 +56,7 @@ export class CandidatoService {
                 } as UsuarioCandidato; // Asegúrate de que sea del tipo correcto
               } else {
                 console.warn(`Usuario no encontrado para id_usuario: ${candidato.id_usuario}`);
-                // Opcionalmente, puedes asignar un objeto vacío o valores por defecto a `usuario`
+                // Asignar valores por defecto si el usuario no se encuentra
                 candidato.usuario = {
                   id_usuario: candidato.id_usuario,
                   pnombre: 'Desconocido',
@@ -68,7 +69,7 @@ export class CandidatoService {
             })
           )
         );
-
+  
         // Usa forkJoin para esperar a que todas las observaciones se completen
         return forkJoin(observables); // Devuelve un array de candidatos con datos de usuario
       }),
@@ -78,6 +79,7 @@ export class CandidatoService {
       })
     );
   }
+  
 
   obtenerCandidatoPorId(id_candidato: number): Observable<Candidato | null> {
     const params = new HttpParams().set('id_candidato', `eq.${id_candidato}`);
@@ -90,6 +92,25 @@ export class CandidatoService {
         }
         console.warn(`No se encontró el candidato con id_candidato: ${id_candidato}`);
         return null; // Retorna null si no hay candidato
+      }),
+      catchError((error) => {
+        console.error('Error al obtener el candidato:', error);
+        return throwError(() => new Error('Error al obtener el candidato.'));
+      })
+    );
+  }
+
+  obtenerCandidatoPorVotacion(id_votacion: number): Observable<Candidato[]> {
+    const params = new HttpParams().set('id_votacion', `eq.${id_votacion}`);
+  
+    return this._apiConfig.get<Candidato[]>(this.path, params).pipe(
+      map(response => {
+        console.log('Respuesta de la API:', response.body);
+        if (response.body && response.body.length > 0) {
+          return response.body; // Devuelve un array de candidatos
+        }
+        console.warn(`No se encontró ningún candidato con id_votacion: ${id_votacion}`);
+        return []; // Retorna un array vacío si no hay candidatos
       }),
       catchError((error) => {
         console.error('Error al obtener el candidato:', error);
