@@ -1,6 +1,7 @@
 {
   "name": "votaciones",
   "version": "1.0.0",
+  "main": "server.js",
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
@@ -9,6 +10,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
+  },
+  "engines": {
+    "node": "20.x"
   },
   "private": true,
   "dependencies": {
