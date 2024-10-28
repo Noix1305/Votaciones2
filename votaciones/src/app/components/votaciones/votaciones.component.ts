@@ -7,6 +7,7 @@ import { Votacion } from 'src/app/models/votacion';
 import { interval, Subscription } from 'rxjs';
 import { VotacionService } from 'src/app/services/votacionService/votacion.service';
 import { Votos } from 'src/app/models/voto';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-votaciones',
@@ -80,48 +81,142 @@ export class VotacionesComponent implements OnInit, OnDestroy {
     this.router.navigate(['/ver-candidato']);
   }
 
+  // async irAVotar(candidato: Candidato): Promise<void> {
+  //   const usuarioString = localStorage.getItem('userInfo');
+  //   if (!usuarioString) {
+  //     console.error('No se encontró información del usuario en localStorage.');
+  //     return; // Detiene la ejecución si no hay información del usuario
+  //   }
+
+  //   const usuario = JSON.parse(usuarioString);
+
+  //   // Verificar si el usuario tiene la propiedad habilitado
+  //   if (!usuario.habilitado) {
+  //     console.error('El usuario no está habilitado para votar.');
+  //     return; // Detiene la ejecución si el usuario no está habilitado
+  //   }
+
+  //   // Verificar si la fecha actual está dentro del rango de la votación
+  //   if (!this.isVotacionActiva(this.votacion)) {
+  //     console.error('La votación no está activa en este momento.');
+  //     return; // Detiene la ejecución si la votación no está activa
+  //   }
+
+  //   // Consultar si ya votó en esta votación
+  //   // const yaVoto = await this._votacionService.verificarVotoRegistrado(usuario.id_usuario, this.votacion.id_votacion);
+
+  //   // if (yaVoto) {
+  //   //   console.error('El usuario ya ha votado en esta votación.');
+  //   //   return; // Detiene la ejecución si el usuario ya ha votado
+  //   // }
+
+  //   // Si todas las validaciones son exitosas, crea el objeto de voto
+  //   const voto: Votos = {
+  //     id_votacion: this.votacion.id_votacion,
+  //     id_candidato: candidato.id_candidato,
+  //     fecha_voto: new Date().toISOString().split('T')[0], // Solo fecha en formato YYYY-MM-DD
+  //   };
+
+  //   // Generar el voto
+  //   this._votacionService.generarVoto(voto);
+  //   console.log('Voto registrado exitosamente:', voto);
+
+  //   await this.registrarVoto(usuario.id_usuario, this.votacion.id_votacion);
+  // }
+
   async irAVotar(candidato: Candidato): Promise<void> {
     const usuarioString = localStorage.getItem('userInfo');
+
+    // Verifica si usuarioString es null antes de continuar
     if (!usuarioString) {
-      console.error('No se encontró información del usuario en localStorage.');
+      await Swal.fire({
+        title: 'Usuario no encontrado',
+        text: 'No se encontró información del usuario en el sistema. Por favor, inicie sesión nuevamente.',
+        icon: 'warning',
+        confirmButtonText: 'Aceptar'
+      });
       return; // Detiene la ejecución si no hay información del usuario
     }
 
-    const usuario = JSON.parse(usuarioString);
-
-    // Verificar si el usuario tiene la propiedad habilitado
-    if (!usuario.habilitado) {
-      console.error('El usuario no está habilitado para votar.');
-      return; // Detiene la ejecución si el usuario no está habilitado
+    // Realiza todas las validaciones
+    const esValido = await this.validarUsuarioVotacion(usuarioString);
+    if (!esValido) {
+      return; // Detiene la ejecución si alguna validación falla
     }
 
-    // Verificar si la fecha actual está dentro del rango de la votación
-    if (!this.isVotacionActiva(this.votacion)) {
-      console.error('La votación no está activa en este momento.');
-      return; // Detiene la ejecución si la votación no está activa
-    }
+    const usuario = JSON.parse(usuarioString); // Este JSON.parse solo se ejecutará si usuarioString es válido.
 
-    // Consultar si ya votó en esta votación
-    const yaVoto = await this._votacionService.verificarVotoRegistrado(usuario.id_usuario, this.votacion.id_votacion);
-
-    if (yaVoto) {
-      console.error('El usuario ya ha votado en esta votación.');
-      return; // Detiene la ejecución si el usuario ya ha votado
-    }
-
-    // Si todas las validaciones son exitosas, crea el objeto de voto
+    // Si pasa las validaciones, procede a registrar el voto
     const voto: Votos = {
       id_votacion: this.votacion.id_votacion,
       id_candidato: candidato.id_candidato,
       fecha_voto: new Date().toISOString().split('T')[0], // Solo fecha en formato YYYY-MM-DD
     };
 
-    // Generar el voto
     this._votacionService.generarVoto(voto);
     console.log('Voto registrado exitosamente:', voto);
 
     await this.registrarVoto(usuario.id_usuario, this.votacion.id_votacion);
   }
+
+
+
+  async validarUsuarioVotacion(usuarioString: string | null): Promise<boolean> {
+    if (!usuarioString) {
+      console.error('No se encontró información del usuario en localStorage.');
+      await Swal.fire({
+        title: 'Usuario no encontrado',
+        text: 'No se encontró información del usuario en el sistema. Por favor, inicie sesión nuevamente.',
+        icon: 'warning',
+        confirmButtonText: 'Aceptar'
+      });
+      return false; // Retorna falso si no hay información del usuario
+    }
+
+    const usuario = JSON.parse(usuarioString);
+
+    // Verificar si el usuario está habilitado
+    if (!usuario.habilitado) {
+      console.error('El usuario no está habilitado para votar.');
+      await Swal.fire({
+        title: 'No habilitado para votar',
+        text: 'Su usuario no está autorizado para participar en esta votación.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
+      return false; // Retorna falso si el usuario no está habilitado
+    }
+
+    // Verificar si la votación está activa
+    if (!this.isVotacionActiva(this.votacion)) {
+      console.error('La votación no está activa en este momento.');
+      await Swal.fire({
+        title: 'Votación inactiva',
+        text: 'La votación no está activa en este momento.',
+        icon: 'info',
+        confirmButtonText: 'Aceptar'
+      });
+      return false; // Retorna falso si la votación no está activa
+    }
+
+    // Verificar si el usuario ya ha votado en esta votación
+    const yaVoto = await this._votacionService.verificarVotoRegistrado(usuario.id_usuario, this.votacion.id_votacion);
+
+    if (yaVoto) {
+      console.error('El usuario ya ha votado en esta votación.');
+      await Swal.fire({
+        title: 'Voto ya registrado',
+        text: 'Usted ya ha votado en esta votación.',
+        icon: 'info',
+        confirmButtonText: 'Aceptar'
+      });
+      return false; // Retorna falso si el usuario ya ha votado
+    }
+
+    return true; // Retorna verdadero si pasa todas las validaciones
+  }
+
+
 
 
   isVotacionActiva(votacion: Votacion): boolean {

@@ -17,8 +17,7 @@
                     <h5 class="card-title">{{ candidato.usuario.pnombre }} {{ candidato.usuario.appaterno }}</h5>
                 </a>
                 <p class="card-text">{{ candidato.descripcion }}</p>
-                <button class="btn btn-primary btn-block" (click)="irAVotar(candidato)"
-                    [disabled]="!isVotacionActiva(votacion)">Votar</button>
+                <button class="btn btn-primary btn-block" (click)="irAVotar(candidato)">Votar</button>
                 <!-- Botón para ver el candidato -->
                 <button class="btn btn-primary" (click)="guardarYVerCandidato(candidato)">Ver Candidato</button>
             </div>
