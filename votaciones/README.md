@@ -1,27 +1,57 @@
-# Prueba
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
+# Votaciones
 
-## Development server
+Este es un proyecto de Angular llamado "votaciones". A continuación se presentan las instrucciones para instalar las dependencias necesarias para el proyecto.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Instalación
 
-## Code scaffolding
+### Dependencias de Angular y Angular CLI
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Para instalar todas las dependencias de Angular y Angular CLI, ejecuta el siguiente comando:
 
-## Build
+```bash
+npm install @angular/animations @angular/common @angular/compiler @angular/core @angular/forms @angular/platform-browser @angular/platform-browser-dynamic @angular/router @angular/cli @angular/compiler-cli
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Dependencias Adicionales
 
-## Running unit tests
+Para instalar las dependencias adicionales necesarias para el proyecto, utiliza este comando:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+npm install @fortawesome/fontawesome-free @supabase/supabase-js bootstrap chart.js chartjs-plugin-datalabels cors dotenv jquery ng2-charts node-cron pg rxjs sweetalert2 tslib zone.js
+```
 
-## Running end-to-end tests
+### Tipos de TypeScript
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Para instalar los tipos de TypeScript requeridos, ejecuta:
 
-## Further help
+```bash
+npm install --save-dev @types/jasmine @types/node @types/node-cron @types/pg @types/chart.js @types/bonjour @types/estree @types/http-errors
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Herramientas de Desarrollo
+
+Finalmente, para instalar las herramientas de desarrollo, utiliza el siguiente comando:
+
+```bash
+npm install --save-dev @angular-devkit/build-angular jasmine-core karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter typescript
+```
+
+## Uso
+
+Después de instalar las dependencias, puedes iniciar el servidor de desarrollo con el siguiente comando:
+
+```bash
+npm start
+```
+
+Esto iniciará la aplicación y podrás acceder a ella en `http://localhost:4200`.
+
+## Contribución
+
+Las contribuciones son bienvenidas. Si deseas contribuir, por favor abre un "issue" o un "pull request".
+
+## Licencia
+
+Este proyecto está bajo la Licencia MIT - consulta el archivo [LICENSE](LICENSE) para más detalles.
+
