@@ -61,7 +61,7 @@ h1 {
     border-radius: 50%;
     width: 150px;
     height: 150px;
-    object-fit: cover;
+    object-fit: cover; /* Prueba con 'contain' si 'cover' no funciona */
     margin: 1.5rem auto;
     border: 5px solid #ecf0f1;
 }

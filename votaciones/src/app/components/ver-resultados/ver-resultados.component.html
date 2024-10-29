@@ -1,19 +1,20 @@
-<div class="container">
-    <h1>Resultados de las Votaciones</h1>
+<div class="container" style="text-align:center;">
+  <h1>Lista de Votaciones</h1>
+  <ul class="list-group">
+    <li *ngFor="let votacion of votaciones" class="list-group-item">
+      <strong>{{ votacion.nombre }}</strong> [{{votacion.fecha_inicio}} -- {{votacion.fecha_fin}}]
+      <button class="btn btn-primary float-right" (click)="verResultados(votacion)">Ver Resultados</button>
+    </li>
+  </ul>
+
+  <div *ngIf="seleccionada" class="mt-4">
+    <h2>{{ seleccionada.nombre }}</h2>
     <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Candidato</th>
-          <th>Votos</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let resultado of resultados">
-          <td>{{ resultado.candidato }}</td>
-          <td>{{ resultado.votos }}</td>
-        </tr>
-      </tbody>
+      <h2>Resultados de la Votación</h2>
+      <div class="responsive-chart-container">
+        <canvas id="myChart"></canvas>
+      </div>
     </table>
-    <button class="btn btn-primary" routerLink="/votaciones">Volver a Votaciones</button>
+    <button class="btn btn-secondary" routerLink="/home">Volver</button>
   </div>
-  
+</div>

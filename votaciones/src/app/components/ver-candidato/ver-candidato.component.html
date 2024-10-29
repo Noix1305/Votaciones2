@@ -1,38 +1,30 @@
-<div class="container candidato-detalle" >
+<div style="text-align: center; margin: 5%;">
+    <h1>
+        Información de candidatura
+    </h1>
+</div>
+
+<div class="container candidato-detalle">
     <div class="row">
         <div class="card h-100">
-            <img src="assets/imgs/Trump.jpg" class="card-img-top" alt="Foto de">
-
-
+            <img [src]="candidato?.usuario.foto_portada || 'assets/imgs/default.jpg'" class="card-img-top"
+                alt="Foto de {{ candidato?.usuario?.pnombre }} {{ candidato?.usuario?.appaterno }}">
             <div class="col-md-8">
-                <h1>Nombre</h1>
+                <h1>{{ candidato?.usuario?.pnombre }} {{ candidato?.usuario?.appaterno }}</h1>
                 <p class="text-muted">Candidato a Presidente</p>
 
                 <div class="info">
                     <h3>Descripción:</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium repudiandae fugiat placeat,
-                        earum ipsa aperiam debitis, consectetur quos officia recusandae sapiente! Nulla reprehenderit
-                        laboriosam itaque similique voluptates ea molestiae fugiat.</p>
-
-                    <h3>Partido Político:</h3>
-                    <p>Partido</p>
+                    <p>{{ candidato?.descripcion }}</p>
 
                     <h3>Propuestas:</h3>
                     <ul>
-                        <li> Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut repellendus eveniet, inventore
-                            laboriosam totam saepe soluta pariatur odio recusandae corrupti amet praesentium mollitia
-                            ipsam provident debitis nulla deleniti, tempore autem?
-
-                        </li>
+                        <li *ngFor="let propuesta of candidato?.propuestas">{{ propuesta }}</li>
                     </ul>
 
                     <h3>Experiencia:</h3>
                     <ul>
-                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime suscipit tempore maiores
-                            dolore aperiam a molestiae sapiente, sequi commodi dicta id rerum est totam vel, dolorum
-                            impedit ad delectus. Doloremque.
-
-                        </li>
+                        <li *ngFor="let exp of candidato?.experiencia">{{ exp }}</li>
                     </ul>
 
                     <button class="btn btn-primary" routerLink='/votaciones'>Volver</button>
