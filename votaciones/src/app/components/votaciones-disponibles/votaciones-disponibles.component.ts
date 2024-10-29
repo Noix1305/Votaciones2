@@ -8,6 +8,8 @@ import { RouterModule } from '@angular/router';
   imports: [CommonModule, RouterModule],
   templateUrl: './votaciones-disponibles.component.html',
   styleUrls: ['./votaciones-disponibles.component.scss']
+
+
 })
 export class VotacionesDisponiblesComponent {
 
