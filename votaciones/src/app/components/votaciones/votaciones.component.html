@@ -1,47 +1,27 @@
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col">
-        <div class="card h-100">
-            <img src="assets/imgs/Trump.jpg" class="card-img-top" alt="Foto de">
-            <div class="card-body">
-                <h5 class="card-title">Nombre Candidato</h5>
-                <p class="card-text">Descripción</p>
-                <button class="btn btn-primary btn-block">Votar</button>
-            </div>
-        </div>
-    </div>
+<header style="text-align: center; margin: 5%;">
+    <h1>
+        Votación para {{ votacion.nombre }}
+    </h1>
+    <h4 *ngIf="tiempoRestante">{{ tiempoRestante }}</h4>
+    <h4 *ngIf="!tiempoRestante">{{ tiempoHastaInicio }}</h4> <!-- Contador de tiempo hasta el inicio -->
+    <!-- Contador de tiempo restante -->
+</header>
 
-    <div class="col">
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" *ngFor="let candidato of candidatos">
         <div class="card h-100">
-            <img src="assets/imgs/Trump.jpg" class="card-img-top" alt="Foto de">
+            <img [src]="candidato.usuario.foto_portada || 'ruta/a/foto/por/defecto.jpg'" class="card-img-top"
+                alt="Foto de {{ candidato.usuario.pnombre }} {{ candidato.usuario.appaterno }}">
             <div class="card-body">
                 <a routerLink='/ver-candidato' style="text-decoration: none;">
-                    <h5 class="card-title">Nombre Candidato</h5>
+                    <h5 class="card-title">{{ candidato.usuario.pnombre }} {{ candidato.usuario.appaterno }}</h5>
                 </a>
-                <p class="card-text">Descripción</p>
-                <button class="btn btn-primary btn-block">Votar</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="col">
-        <div class="card h-100">
-            <img src="assets/imgs/Trump.jpg" class="card-img-top" alt="Foto de">
-            <div class="card-body">
-                <h5 class="card-title">Nombre Candidato</h5>
-                <p class="card-text">Descripción</p>
-                <button class="btn btn-primary btn-block">Votar</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="col">
-        <div class="card h-100">
-            <img src="assets/imgs/Trump.jpg" class="card-img-top" alt="Foto de">
-            <div class="card-body">
-                <h5 class="card-title">Nombre Candidato</h5>
-                <p class="card-text">Descripción</p>
-                <button class="btn btn-primary btn-block">Votar</button>
+                <p class="card-text">{{ candidato.descripcion }}</p>
+                <button class="btn btn-primary btn-block" (click)="irAVotar(candidato)">Votar</button>
+                <!-- Botón para ver el candidato -->
+                <button class="btn btn-primary" (click)="guardarYVerCandidato(candidato)">Ver Candidato</button>
             </div>
         </div>
     </div>
 </div>
+
