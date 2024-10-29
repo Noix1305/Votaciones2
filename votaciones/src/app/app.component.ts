@@ -5,6 +5,7 @@ import { LoginService } from './services/loginService/login.service';
 import { UsuarioService } from './services/usuarioService/usuario.service';
 import { Router } from '@angular/router';
 import 'bootstrap';
+import Swal from 'sweetalert2';
 declare var bootstrap: any;
 
 
@@ -117,6 +118,13 @@ export class AppComponent {
         if (loginModal) {
           loginModal.hide();
         }
+
+        await Swal.fire({
+          title: 'Usuario autenticado con éxito',
+          text: 'Inicio de sesión correcto.',
+          icon: 'success',
+          confirmButtonText: 'Aceptar'
+        });
 
         // Redirige al usuario a la página de inicio
         this.router.navigate(['home']);
