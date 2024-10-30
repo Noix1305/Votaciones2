@@ -39,7 +39,7 @@ export class VerResultadosComponent implements OnInit {
     this.seleccionada = votacion;
     if (this.seleccionada) {
       await this.obtenerVotosPorId(this.seleccionada.id_votacion);
-      await this.obtenerCandidatosPorVotacion(this.seleccionada.id_votacion);
+      this.obtenerCandidatosPorVotacion(this.seleccionada.id_votacion);
     }
   }
 

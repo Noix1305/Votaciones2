@@ -6,12 +6,12 @@ import { HomeComponent } from './components/home/home.component';
 import { VotacionesComponent } from './components/votaciones/votaciones.component'; // Mantén la importación
 import { VerCandidatoComponent } from './components/ver-candidato/ver-candidato.component';
 import { VerResultadosComponent } from './components/ver-resultados/ver-resultados.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent,
-    
+    AppComponent
     
   ],
   imports: [
@@ -19,7 +19,10 @@ import { VerResultadosComponent } from './components/ver-resultados/ver-resultad
     AppRoutingModule,
     VotacionesComponent, // Importa aquí como componente stand-alone
     VerCandidatoComponent,
-    VerResultadosComponent
+    VerResultadosComponent,
+    HomeComponent,
+    FormsModule,
+    HttpClientModule,
      // Importa aquí como componente stand-alone
   ],
   providers: [],
