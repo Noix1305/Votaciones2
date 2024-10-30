@@ -44,8 +44,15 @@ Después de instalar las dependencias, puedes iniciar el servidor de desarrollo 
 ```bash
 npm start
 ```
+o tambien
 
-Esto iniciará la aplicación y podrás acceder a ella en `http://localhost:4200`.
+```bash
+ng serve
+```
+
+Esto iniciará la aplicación y podrás acceder a ella en `http://localhost:4200` para ambiente local.
+
+Para conectarse a la aplicación a través del servidor introducir la dirección http://165.1.125.50/votaciones/ en la barra de navegación de su navegador(valga la redundancia).
 
 ## Contribución
 
