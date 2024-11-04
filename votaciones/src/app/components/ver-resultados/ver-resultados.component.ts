@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { Votacion } from 'src/app/models/votacion';
 import { Votos } from 'src/app/models/voto';
 import { VotacionService } from 'src/app/services/votacionService/votacion.service';
-import { Chart, ChartOptions, registerables, Plugin } from 'chart.js';
+import { Chart, registerables } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels'; // Importa el plugin
 import { Candidato } from 'src/app/models/candidato';
 import { CandidatoService } from 'src/app/services/canditatoService/candidato.service';
@@ -49,7 +49,6 @@ export class VerResultadosComponent implements OnInit {
       next: votos => {
         this.votos = votos; // Asigna los votos obtenidos al array votaciones
         console.log('Votos obtenidos:', this.votos);
-        this.verGraphico(this.votos); // Llama a verGraphico después de que los votos han sido obtenidos
       },
       error: error => {
         console.error('Error al obtener los votos:', error);
@@ -87,29 +86,29 @@ export class VerResultadosComponent implements OnInit {
 
   verGraphico(votos: Votos[]) {
     const canvas = document.getElementById('myChart') as HTMLCanvasElement;
-  
+
     if (canvas) {
       const ctx = canvas.getContext('2d');
-  
+
       if (ctx) {
         const resultados = votos.reduce((acc, voto) => {
           acc[voto.id_candidato] = (acc[voto.id_candidato] || 0) + 1;
           return acc;
         }, {} as Record<number, number>);
-  
+
         const totalVotos = votos.length;
-  
+
         const etiquetas = Object.keys(resultados).map(id_candidato => {
           const candidato = this.candidatos?.find(c => c.id_candidato === Number(id_candidato));
           return candidato ? `${candidato.usuario.pnombre} ${candidato.usuario.appaterno}` : `Candidato desconocido`;
         });
-  
+
         const votosPorCandidato = Object.values(resultados);
-  
+
         if (this.chart) {
           this.chart.destroy(); // Limpia el gráfico anterior
         }
-  
+
         // Configuración del gráfico
         this.chart = new Chart(ctx, {
           type: 'bar',
@@ -160,10 +159,10 @@ export class VerResultadosComponent implements OnInit {
             id: 'foto_portada',
             afterDatasetsDraw: (chart: Chart) => {
               const ctx = chart.ctx;
-  
+
               // Asegúrate de que las etiquetas sean de tipo string
               const labels = chart.data.labels as string[];
-  
+
               const images = labels.map((label, index) => {
                 const candidato = this.candidatos?.[index];
                 if (candidato && candidato.usuario && candidato.usuario.foto_portada) {
@@ -180,7 +179,7 @@ export class VerResultadosComponent implements OnInit {
                   return Promise.resolve(null);
                 }
               });
-  
+
               Promise.all(images).then(results => {
                 results.forEach(result => {
                   if (result) {
@@ -190,7 +189,7 @@ export class VerResultadosComponent implements OnInit {
                       const x = meta.data[index].x - 50; // Ajusta la posición horizontal
                       const y = meta.data[index].y - 40; // Ajusta la posición vertical
                       const size = 100; // Tamaño de la imagen
-  
+
                       // Dibuja un círculo para recortar la imagen
                       ctx.save();
                       ctx.beginPath();
@@ -212,5 +211,5 @@ export class VerResultadosComponent implements OnInit {
       console.error('No se encontró el elemento canvas con id "myChart".');
     }
   }
-  
+
 }
