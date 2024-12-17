@@ -156,6 +156,7 @@ export class VotacionesComponent implements OnInit, OnDestroy {
     this._votacionService.generarVoto(voto);
 
     console.log('Voto registrado exitosamente:', voto);
+    
     await Swal.fire({
       title: 'Voto registrado exitosamente.',
       text: 'Voto ingresado. Muchas gracias.',
