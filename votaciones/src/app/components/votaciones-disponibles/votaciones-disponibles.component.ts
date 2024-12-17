@@ -11,6 +11,8 @@ import { VotacionService } from 'src/app/services/votacionService/votacion.servi
   imports: [CommonModule, RouterModule],
   templateUrl: './votaciones-disponibles.component.html',
   styleUrls: ['./votaciones-disponibles.component.scss']
+
+
 })
 export class VotacionesDisponiblesComponent implements OnInit {
   votacionInfo: string = '';
