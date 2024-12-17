@@ -18,7 +18,6 @@ sudo apt update
 ```
 Luego, instala Node.js (puedes especificar la versión si prefieres una en particular):
 
-
 ```bash
 sudo apt install nodejs
 sudo apt install npm  # Para instalar npm, el gestor de paquetes de Node.js

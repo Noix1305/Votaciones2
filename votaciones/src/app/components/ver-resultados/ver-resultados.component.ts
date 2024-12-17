@@ -35,7 +35,7 @@ export class VerResultadosComponent implements OnInit {
     Chart.register(...registerables, ChartDataLabels);
   }
 
-  async verResultados(votacion: any) {
+  async verResultados(votacion: Votacion) {
     this.seleccionada = votacion;
     if (this.seleccionada) {
       await this.obtenerVotosPorId(this.seleccionada.id_votacion);
